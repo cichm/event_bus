@@ -16,7 +16,7 @@ class EventBus implements MessageBus {
         if (threads <= 0) {
             throw new IllegalArgumentException("Negative threads number");
         }
-        pool = Executors.newFixedThreadPool(threads);
+        this.pool = Executors.newFixedThreadPool(threads);
     }
 
     @Override

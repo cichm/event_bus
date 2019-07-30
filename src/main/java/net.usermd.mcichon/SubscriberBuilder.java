@@ -13,12 +13,12 @@ public class SubscriberBuilder<T> {
 
     public SubscriberBuilder then(Action subscriber) {
         Objects.requireNonNull(subscriber, "subscriber");
-        action = subscriber;
+        this.action = subscriber;
         return this;
     }
 
     public Subscription subscribe() {
-        eventBus.addSubscription(subject, action);
-        return () -> eventBus.removeSubscription(subject, action);
+        eventBus.addSubscription(this.subject, this.action);
+        return () -> eventBus.removeSubscription(this.subject, this.action);
     }
 }
