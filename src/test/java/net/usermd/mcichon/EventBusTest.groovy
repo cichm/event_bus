@@ -7,7 +7,7 @@ import spock.lang.Specification
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 
-class MainTest extends Specification {
+class EventBusTest extends Specification {
 
     @Shared
     private String subject
