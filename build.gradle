@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'dsa'
+group 'net.usermd.mcichon'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -13,4 +13,14 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.google.guava:guava:r05'
+    compile 'io.javaslang:javaslang:2.0.6'
+    implementation 'org.codehaus.groovy:groovy-all:2.5.7'
+
+    testCompile(
+            'junit:junit:4.12',
+            'org.codehaus.groovy:groovy-all:2.5.7',
+            'org.spockframework:spock-core:1.2-groovy-2.5',
+            'org.awaitility:awaitility:3.1.6'
+    )
 }
