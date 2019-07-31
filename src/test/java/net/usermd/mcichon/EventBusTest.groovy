@@ -22,21 +22,23 @@ class EventBusTest extends Specification {
         this.eventBus = MessageBus.create(2);
     }
 
-    def 'should be able to increment and get number one'() {
+    def 'should be able to multi increment with unsubscribe between second sent action and get number one'() {
         given:
-        Subscription subscription = eventBus.subscribeFor(this.subject).then(x.incrementAndGet() as Action).subscribe()
+        Subscription subscription = this.eventBus.subscribeFor(this.subject)
+                .then(this.x.incrementAndGet() as Action)
+                .subscribe()
         when:
-        eventBus.message("Foo").send()
+        this.eventBus.message(this.subject).send()
         and:
         Awaitility.await().atMost(5, TimeUnit.SECONDS)
-                .until({x.get() == 1})
+                .until({this.x.get() == 1})
         and:
         subscription.unsubscribe()
         and:
-        eventBus.message("Foo").send()
+        this.eventBus.message(this.subject).send()
         then:
         Awaitility.await().atMost(5, TimeUnit.SECONDS)
-                .until({x.get() == 1})
+                .until({this.x.get() == 1})
     }
 
     def cleanupSpec() {
